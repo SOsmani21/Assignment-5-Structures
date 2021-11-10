@@ -26,13 +26,13 @@ Note that the test is not exhaustive and only tests basic functionality.
 */
 
 typedef struct List {
-    // (start) int*: The pointer to an integer array
-    // (len) int: Length of the list, i.e. the number of valid elements
-    // (maxlen) int: The maximum number of elements that can currently be stored
+    int *start; // (start) int*: The pointer to an integer array
+    int len; // (len) int: Length of the list, i.e. the number of valid elements
+    int maxlen; // (maxlen) int: The maximum number of elements that can currently be stored
 } List;
 
 List* makeList() {
-    // Create a pointer to a new List structure using malloc
+    struct List *np = (struct List *) malloc(sizeof(struct List)); // Create a pointer to a new List structure using malloc
     // Check for out of memory error
     // Initialize length and maxlength
     // Set the len
