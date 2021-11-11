@@ -33,13 +33,13 @@ typedef struct List {
 
 List* makeList(int *start, int len, int maxlen) {
     struct List *np = (struct List *) malloc(sizeof(struct List)); // Create a pointer to a new List structure using malloc
-    // Check for out of memory error
+    np->next = NULL;// Check for out of memory error
     np.len = 0; // Initialize length and maxlength
     // Set the len
     np.maxlen = 2; // Set the maxlen (start at 2)
     int array[maxlen] *ap = (int array *) malloc(sizeof(int array[maxlen])); // Create a pointer to a new integer array of size maxlen (using malloc)
     np.start = ap// Set the start equal to that pointer
-    // Check for out of memory error
+    ap->next = NULL;// Check for out of memory error
     return np;// Return the list pointer
 }
 
