@@ -34,7 +34,7 @@ typedef struct List {
 List* makeList(int *start, int len, int maxlen) {
     struct List *np = (struct List *) malloc(sizeof(struct List)); // Create a pointer to a new List structure using malloc
     // Check for out of memory error
-    np.len = ; // Initialize length and maxlength
+    np.len = 0; // Initialize length and maxlength
     // Set the len
     np.maxlen = 2; // Set the maxlen (start at 2)
     int array[maxlen] *ap = (int array *) malloc(sizeof(int array[maxlen])); // Create a pointer to a new integer array of size maxlen (using malloc)
@@ -45,40 +45,45 @@ List* makeList(int *start, int len, int maxlen) {
 
 /* Resize the list to a new maximum length */
 void resizeList(List *list, int size) {
-    // Assert that the size is greater than the current length
-    // Reallocate the array with more space
-    // Change the maxlen to the new maximum length
+    assert(size > list->len);// Assert that the size is greater than the current length
+    list = relloc(list, sizeof(list->len)); // Reallocate the array with more space
+    list->maxlen = list->len; // Change the maxlen to the new maximum length
 }
 
 /* Add 'value' to the end of the list */
 void pushList(List *list, int value) {
-    // If not enough space, resize the list to two times its current size
-    // Add the value to the end of the list
-    // Increment the len by 1
+    if (list->len == list->maxlen) {
+        resizeList(list, list->maxlen*2);
+    } // If not enough space, resize the list to two times its current size
+    *(list->start + list->len) = value; // Add the value to the end of the list
+    list->len++; // Increment the len by 1
 }
 
 /* Remove and return the last element of the list */
 int popList(List *list) {
-    // Assert the list has len greater than 0
-    // Decrement the length by 1
-    // Get the last value in the list
-    // If the list size is now less than half its current maximum length,
-    // resize the list to half its current maximum length
-    // Return the last value
+    assert(list->len > 0);// Assert the list has len greater than 0
+    list->len--;// Decrement the length by 1
+    int lastval = list->len-1; // Get the last value in the list
+    if (size <= list->maxlen/2) {// If the list size is now less than half its current maximum length,
+        resizeList(list, list->maxlen/2);
+    } // resize the list to half its current maximum length
+    return lastval;// Return the last value
 }
 
 int getList(List *list, int index) {
-    // Assert index is greater than 0 and less than the list len
+    assert(index > 0 && index < list->len);// Assert index is greater than 0 and less than the list len
     // Get the element at position 'index' in the list
 }
 
 void setList(List *list, int index, int value) {
     // Assert index is greater than 0 and less than the list len
-    // Set the element at position 'index' to 'value'
+    if (index > 0 && index < list->len) {
+        *(list->start + index) = value; // Set the element at position 'index' to 'value'
+    }
 }
 
 int sumList(List *list) {
-    // Return the sum of all valid elements
+    int sum = (list->// Return the sum of all valid elements
 }
 
 void freeList(List *list) {
