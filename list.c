@@ -46,8 +46,8 @@ List* makeList(int *start, int len, int maxlen) {
 /* Resize the list to a new maximum length */
 void resizeList(List *list, int size) {
     assert(size > list->len);// Assert that the size is greater than the current length
-    list = relloc(list, sizeof(list->len)); // Reallocate the array with more space
-    list->maxlen = list->len; // Change the maxlen to the new maximum length
+    list->maxlen = relloc(list, sizeof(list->len)); // Reallocate the array with more space
+    //list->maxlen = list->len; // Change the maxlen to the new maximum length
 }
 
 /* Add 'value' to the end of the list */
@@ -63,7 +63,7 @@ void pushList(List *list, int value) {
 int popList(List *list) {
     assert(list->len > 0);// Assert the list has len greater than 0
     list->len--;// Decrement the length by 1
-    int lastval = list->len-1; // Get the last value in the list
+    int lastval = list->len; // Get the last value in the list
     if (size <= list->maxlen/2) {// If the list size is now less than half its current maximum length,
         resizeList(list, list->maxlen/2);
     } // resize the list to half its current maximum length
@@ -72,7 +72,7 @@ int popList(List *list) {
 
 int getList(List *list, int index) {
     assert(index > 0 && index < list->len);// Assert index is greater than 0 and less than the list len
-    // Get the element at position 'index' in the list
+    int indelm = list[index]; // Get the element at position 'index' in the list
 }
 
 void setList(List *list, int index, int value) {
@@ -83,12 +83,16 @@ void setList(List *list, int index, int value) {
 }
 
 int sumList(List *list) {
-    int sum = (list->// Return the sum of all valid elements
+    int sum = 0;
+    for (int n = 0, n < list->len, n++) {
+        sum += list[n];
+    }
+    return sum; // Return the sum of all valid elements
 }
 
 void freeList(List *list) {
-    // Free the array space
-    // Free the list space
+    free area;// Free the array space
+    free list;// Free the list space
 }
 
 int main() {
